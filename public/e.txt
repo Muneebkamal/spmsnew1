@@ -1,0 +1,11 @@
+Processing temp folder: CppQEF
+Processing temp folder: cne61w
+Temp folder does not exist: /home/proflxlj/spms.professor.website/public/temp/cne61w
+Processing temp folder: ba516T
+Processing temp folder: ba516T
+Processing temp folder: ry53IX
+Processing temp folder: ry53IX
+Processing temp folder: OUzhVY
+Processing temp folder: WlUkuA
+File uploaded to S3: https://spms-property.s3.ap-southeast-2.amazonaws.com/%E5%89%B5%E5%8C%AF1601/59936842559213.jpg
+All files processed
