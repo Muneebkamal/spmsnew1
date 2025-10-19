@@ -656,8 +656,8 @@
                     <div class="divider mb-2"></div>
 
                     {{-- @php
-                    $sharedImages = json_decode(auth()->user()->images_share_list, true) ?? [];
-                @endphp --}}
+                        $sharedImages = json_decode(auth()->user()->images_share_list, true) ?? [];
+                    @endphp --}}
 
                     <div class="d-flex justify-content-end">
                         <div class="col-md-2">
@@ -736,12 +736,9 @@
                                     @endphp
 
                                     <a href="{{ $s3Base . $photo->image }}" title="{{ $photo->code }}">
-                                        <img class="img-fluid fix-img shadow h-100" src="{{ $s3Base . $photo->image }}"
+                                        <img class="img-fluid fix-img shadow" src="{{ $s3Base . $photo->image }}"
                                             alt="{{ $property->code }}" width="100%" title="{{ $property->code }}">
                                     </a>
-                                    {{-- <a href="{{ asset('properties/' . $photo->image) }}" title="{{ $photo->code }}">
-                                <img class="img-fluid fix-img shadow h-100" src="{{ asset('properties/' . $photo->image) }}" alt="{{ $property->code }}" width="100%" title="{{ $property->code }}">
-                            </a> --}}
                                     @if ($photo->photoAi)
                                         <button class="btn flip-btn btn-primary"
                                             data-image="{{ env('AWS_URL') . $photo->photoAi->img_name }}"
