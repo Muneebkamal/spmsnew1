@@ -73,24 +73,24 @@
     <style>
         /* CSS */
         /* .log_btn {
-                                                                                                                                                                                              background-image: linear-gradient(144deg,#05445E, #009EF7 50%,#189AB4);
-                                                                                                                                                                                              box-shadow: 0 6px 15px rgba(0, 158, 247, 0.25);
-                                                                                                                                                                                              transition: all 0.3s ease;
-                                                                                                                                                                                              color: #fff;
-                                                                                                                                                                                              border: none;
-                                                                                                                                                                                            }
+                                                                                                                                                                                                  background-image: linear-gradient(144deg,#05445E, #009EF7 50%,#189AB4);
+                                                                                                                                                                                                  box-shadow: 0 6px 15px rgba(0, 158, 247, 0.25);
+                                                                                                                                                                                                  transition: all 0.3s ease;
+                                                                                                                                                                                                  color: #fff;
+                                                                                                                                                                                                  border: none;
+                                                                                                                                                                                                }
 
-                                                                                                                                                                                            .log_btn:hover {
-                                                                                                                                                                                              background-image: linear-gradient(144deg,#189AB4, #009EF7 50%, #05445E);
-                                                                                                                                                                                              box-shadow: 0 8px 18px rgba(24, 154, 180, 0.35);
-                                                                                                                                                                                            }
+                                                                                                                                                                                                .log_btn:hover {
+                                                                                                                                                                                                  background-image: linear-gradient(144deg,#189AB4, #009EF7 50%, #05445E);
+                                                                                                                                                                                                  box-shadow: 0 8px 18px rgba(24, 154, 180, 0.35);
+                                                                                                                                                                                                }
 
-                                                                                                                                                                                            .log_btn:active {
-                                                                                                                                                                                              transform: scale(0.95);
-                                                                                                                                                                                              background-image: linear-gradient(144deg,#05445E, #009EF7 50%,#189AB4);
-                                                                                                                                                                                              box-shadow: 0 4px 10px rgba(5, 68, 94, 0.35),
-                                                                                                                                                                                                          0 2px 6px rgba(0, 158, 247, 0.25);
-                                                                                                                                                                                            } */
+                                                                                                                                                                                                .log_btn:active {
+                                                                                                                                                                                                  transform: scale(0.95);
+                                                                                                                                                                                                  background-image: linear-gradient(144deg,#05445E, #009EF7 50%,#189AB4);
+                                                                                                                                                                                                  box-shadow: 0 4px 10px rgba(5, 68, 94, 0.35),
+                                                                                                                                                                                                              0 2px 6px rgba(0, 158, 247, 0.25);
+                                                                                                                                                                                                } */
         @media screen and (max-width: 640px) {
             .sw-theme-arrows>.nav .nav-link {
 
@@ -136,7 +136,7 @@
         <div class="mt-5">
             <div class="container">
                 <div class="d-flex justify-content-end mb-3">
-                    <a class="mt-2 ml-2 btn btn-sm log_btn px-3" href="{{ route('properties.import') }}">Bulk Propert
+                    <a class="mt-2 ml-2 btn btn-sm log_btn px-3" href="{{ route('properties.import') }}">Bulk Property
                         Import</a>
                 </div>
 
