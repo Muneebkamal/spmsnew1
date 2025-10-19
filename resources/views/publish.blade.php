@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="https://unpkg.com/filepond@4.32.1/dist/filepond.min.css" />
 <!-- Include FilePond Plugin CSS for Image Preview -->
 <link rel="stylesheet" href="https://unpkg.com/filepond-plugin-image-preview@4.6.11/dist/filepond-plugin-image-preview.min.css" />
-{{-- <style>
+<style>
     p {
         margin: 0;
     }
@@ -65,7 +65,7 @@
     .form-check-width{
         width: 50%;
     }
-</style> --}}
+</style>
 @endsection
 
 @section('content')
