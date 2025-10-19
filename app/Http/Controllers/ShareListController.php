@@ -494,28 +494,24 @@ class ShareListController extends Controller
                 if ($room || $size || $price || $labelRoom || $labelSize || $labelPrice || $border || $label || $note) {
                     
                     $s3Url = rtrim(env('AWS_URL'), '/') . '/' . ltrim($image->image, '/');
-                    $proxyUrl = route('proxy.s3.image', ['url' => $s3Url]);
-
                     try {
-                        // Proxy se binary fetch karo
-                        $response = Http::withOptions(['verify' => false])->get($proxyUrl);
+                        $response = Http::withOptions(['verify' => false])->get($s3Url);
 
                         if ($response->failed()) {
                             dd([
                                 'status'    => 'proxy_failed',
-                                'proxy_url' => $proxyUrl,
+                                'proxy_url' => $s3Url,
                                 'http_code' => $response->status(),
-                                'body'      => substr($response->body(), 0, 200), // sirf pehle 200 chars debug k liye
+                                'body'      => substr($response->body(), 0, 200),
                             ]);
                         }
 
-                        // Ab binary ko Intervention Image me pass karo
                         $originalImage = Image::make($response->body());
 
                     } catch (\Exception $e) {
                         dd([
                             'status'    => 'failed_to_load_via_proxy',
-                            'proxy_url' => $proxyUrl,
+                            'proxy_url' => $s3Url,
                             'error'     => $e->getMessage(),
                         ]);
                     }
