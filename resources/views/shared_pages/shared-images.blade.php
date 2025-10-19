@@ -232,75 +232,75 @@
                                             <div class="accordion-body">
                                                 @if (in_array('building', $options))
                                                     <span style="font-size: 25px">大廈: <span
-                                                            style="color: blue">{{ $property->building }}</span></span><br>
+                                                            style="color: blue">{{ $property->building ?? 'null' }}</span></span><br>
                                                 @endif
                                                 @if (in_array('street', $options))
                                                     <span style="font-size: 25px">街道: <span
-                                                            style="color: blue">{{ $property->street }}</span></span><br>
+                                                            style="color: blue">{{ $property->street ?? 'null' }}</span></span><br>
                                                 @endif
                                                 @if (in_array('district', $options))
                                                     <span style="font-size: 25px">地區: <span
-                                                            style="color: blue">{{ $property->district }}</span></span><br>
+                                                            style="color: blue">{{ $property->district ?? 'null' }}</span></span><br>
                                                 @endif
                                                 @if (in_array('floor', $options))
                                                     <span style="font-size: 25px">樓層: <span
-                                                            style="color: blue">{{ $property->floor }}</span></span><br>
+                                                            style="color: blue">{{ $property->floor ?? 'null' }}</span></span><br>
                                                 @endif
                                                 @if (in_array('flat', $options))
                                                     <span style="font-size: 25px">單位: <span
-                                                            style="color: blue">{{ $property->flat }}</span></span><br>
+                                                            style="color: blue">{{ $property->flat ?? 'null' }}</span></span><br>
                                                 @endif
                                                 @if (in_array('block', $options))
                                                     <span style="font-size: 25px">座數: <span
-                                                            style="color: blue">{{ $property->block }}</span></span><br>
+                                                            style="color: blue">{{ $property->block ?? 'null' }}</span></span><br>
                                                 @endif
                                                 @if (in_array('rental_price', $options))
                                                     <span style="font-size: 25px">業主叫租: <span
-                                                            style="color: blue">{{ $property->rental_price }}</span></span><br>
+                                                            style="color: blue">{{ $property->rental_price ?? 'null' }}</span></span><br>
                                                 @endif
                                                 @if (in_array('rental_g', $options))
                                                     <span style="font-size: 25px">呎租(建): <span
-                                                            style="color: blue">{{ $property->rental_g }}</span></span><br>
+                                                            style="color: blue">{{ $property->rental_g ?? 'null' }}</span></span><br>
                                                 @endif
                                                 @if (in_array('rental_n', $options))
                                                     <span style="font-size: 25px">呎租(實): <span
-                                                            style="color: blue">{{ $property->rental_n }}</span></span><br>
+                                                            style="color: blue">{{ $property->rental_n ?? 'null' }}</span></span><br>
                                                 @endif
                                                 @if (in_array('selling_price', $options))
                                                     <span style="font-size: 25px">售價: <span
-                                                            style="color: blue">{{ $property->selling_price }}</span></span><br>
+                                                            style="color: blue">{{ $property->selling_price ?? 'null' }}</span></span><br>
                                                 @endif
                                                 @if (in_array('selling_g', $options))
                                                     <span style="font-size: 25px">呎價(建): <span
-                                                            style="color: blue">{{ $property->selling_g }}</span></span><br>
+                                                            style="color: blue">{{ $property->selling_g ?? 'null' }}</span></span><br>
                                                 @endif
                                                 @if (in_array('selling_n', $options))
                                                     <span style="font-size: 25px">呎價(實): <span
-                                                            style="color: blue">{{ $property->selling_n }}</span></span><br>
+                                                            style="color: blue">{{ $property->selling_n ?? 'null' }}</span></span><br>
                                                 @endif
                                                 @if (in_array('gross_sf', $options))
                                                     <span style="font-size: 25px">建築面積: <span
-                                                            style="color: blue">{{ $property->gross_sf }}</span></span><br>
+                                                            style="color: blue">{{ $property->gross_sf ?? 'null' }}</span></span><br>
                                                 @endif
                                                 @if (in_array('net_sf', $options))
                                                     <span style="font-size: 25px">實用面積: <span
-                                                            style="color: blue">{{ $property->net_sf }}</span></span><br>
+                                                            style="color: blue">{{ $property->net_sf ?? 'null' }}</span></span><br>
                                                 @endif
                                                 @if (in_array('mgmf', $options))
                                                     <span style="font-size: 25px">管理費: <span
-                                                            style="color: blue">{{ $property->mgmf }}</span></span><br>
+                                                            style="color: blue">{{ $property->mgmf ?? 'null' }}</span></span><br>
                                                 @endif
                                                 @if (in_array('rate', $options))
                                                     <span style="font-size: 25px">差餉: <span
-                                                            style="color: blue">{{ $property->rate }}</span></span><br>
+                                                            style="color: blue">{{ $property->rate ?? 'null' }}</span></span><br>
                                                 @endif
                                                 @if (in_array('land', $options))
                                                     <span style="font-size: 25px">地租: <span
-                                                            style="color: blue">{{ $property->land }}</span></span><br>
+                                                            style="color: blue">{{ $property->land ?? 'null' }}</span></span><br>
                                                 @endif
                                                 @if (in_array('oths', $options))
                                                     <span style="font-size: 25px">其他: <span
-                                                            style="color: blue">{{ $property->oths }}</span></span><br>
+                                                            style="color: blue">{{ $property->oths ?? 'null' }}</span></span><br>
                                                 @endif
                                                 @if (in_array('youtube_link', $options))
                                                     <hr>
@@ -324,31 +324,31 @@
                                                 @endif
                                                 @if (in_array('cargo_lift', $options))
                                                     <span style="font-size: 25px">載貨電梯: <span
-                                                            style="color: blue">{{ $property->cargo_lift }}</span></span><br>
+                                                            style="color: blue">{{ $property->cargo_lift ?? 'null' }}</span></span><br>
                                                 @endif
                                                 @if (in_array('customer_lift', $options))
                                                     <span style="font-size: 25px">載客電梯: <span
-                                                            style="color: blue">{{ $property->customer_lift }}</span></span><br>
+                                                            style="color: blue">{{ $property->customer_lift ?? 'null' }}</span></span><br>
                                                 @endif
                                                 @if (in_array('num_floors', $options))
                                                     <span style="font-size: 25px">最高樓層: <span
-                                                            style="color: blue">{{ $property->num_floors }}</span></span><br>
+                                                            style="color: blue">{{ $property->num_floors ?? 'null' }}</span></span><br>
                                                 @endif
                                                 @if (in_array('car_park', $options))
                                                     <span style="font-size: 25px">停車場: <span
-                                                            style="color: blue">{{ $property->car_park }}</span></span><br>
+                                                            style="color: blue">{{ $property->car_park ?? 'null' }}</span></span><br>
                                                 @endif
                                                 @if (in_array('ceiling_height', $options))
                                                     <span style="font-size: 25px">樓層高度: <span
-                                                            style="color: blue">{{ $property->ceiling_height }}</span></span><br>
+                                                            style="color: blue">{{ $property->ceiling_height ?? 'null' }}</span></span><br>
                                                 @endif
                                                 @if (in_array('air_con_system', $options))
                                                     <span style="font-size: 25px">冷氣系統: <span
-                                                            style="color: blue">{{ $property->air_con_system }}</span></span><br>
+                                                            style="color: blue">{{ $property->air_con_system ?? 'null' }}</span></span><br>
                                                 @endif
                                                 @if (in_array('building_loading', $options))
                                                     <span style="font-size: 25px">樓面承重: <span
-                                                            style="color: blue">{{ $property->building_loading }}</span></span><br>
+                                                            style="color: blue">{{ $property->building_loading ?? 'null' }}</span></span><br>
                                                 @endif
                                                 {{-- <span style="font-size: 25px">enter_password: <span style="color: blue">{{ $property->enter_password }}</span></span><br>
                                             <span style="font-size: 25px">Others: <span style="color: blue"></span></span><br>
@@ -403,7 +403,7 @@
                                             src="{{ $baseUrl . $photo->square_image }}" alt=""
                                             title="{{ $imageDetails['note'] ?? '' }}">
                                     </a>
-                                    @if (
+                                    {{-- @if (
                                         ($imageDetails['note'] ?? '') ||
                                             ($imageDetails['room'] ?? 0) == 1 ||
                                             ($imageDetails['size'] ?? 0) == 1 ||
@@ -415,6 +415,28 @@
                                             {{ $imageDetails['size'] == 1 ? $photo->size : '' }}</div>
                                         <div class="share-note">價錢:
                                             {{ $imageDetails['price'] == 1 ? $photo->price : '' }}</div>
+                                    @endif --}}
+                                    @if (
+                                        !empty($imageDetails['note']) ||
+                                        (!empty($imageDetails['room']) && $imageDetails['room'] == 1 && !empty($photo->room_number)) ||
+                                        (!empty($imageDetails['size']) && $imageDetails['size'] == 1 && !empty($photo->size)) ||
+                                        (!empty($imageDetails['price']) && $imageDetails['price'] == 1 && !empty($photo->price))
+                                    )
+                                        @if (!empty($imageDetails['note']))
+                                            <div class="share-note blue">{{ $imageDetails['note'] }}</div>
+                                        @endif
+
+                                        @if (!empty($imageDetails['room']) && $imageDetails['room'] == 1 && !empty($photo->room_number))
+                                            <div class="share-note">單位: {{ $photo->room_number }}</div>
+                                        @endif
+
+                                        @if (!empty($imageDetails['size']) && $imageDetails['size'] == 1 && !empty($photo->size))
+                                            <div class="share-note">呎吋: {{ $photo->size }}</div>
+                                        @endif
+
+                                        @if (!empty($imageDetails['price']) && $imageDetails['price'] == 1 && !empty($photo->price))
+                                            <div class="share-note">價錢: {{ $photo->price }}</div>
+                                        @endif
                                     @endif
                                 </div>
                             @endforeach
@@ -423,7 +445,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-12 h6">
                         <p>“我們會為您精準搜尋最優質的盤源，並能在具有潛力的物業流出市場前推薦給您，歡迎聯絡我們視察物業！” 保誠物業。</p>
                         <p>物業的呎吋、價格或因應提供方之準確性及市場變化而有所不同，一切需以最終確認為準。</p>
                     </div>
