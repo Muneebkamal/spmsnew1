@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ $comment ?? 'COmment' }}</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <!-- Magnific Popup core CSS file -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
 
@@ -13,99 +15,120 @@
         [data-code-span] {
             font-size: 14px;
         }
-        .comment{
+
+        .comment {
             font-size: 22pt !important;
         }
+
         .container.share {
             font-size: 20pt;
         }
+
         .share-list .img-overflow {
             overflow: hidden;
             height: 95px;
         }
+
         .share-list .img-overflow img {
             height: 100%;
         }
+
         .share-list img {
             margin-right: 10px;
         }
-        nav img, .share-list img {
+
+        nav img,
+        .share-list img {
             width: auto;
         }
+
         span {
             font-family: 'Lato', sans-serif;
         }
+
         .mfp-img-mobile .mfp-close {
             width: 70px;
             height: 70px;
             font-size: 80px;
         }
+
         .mfp-arrow:after {
             border-top-width: 26px;
             border-bottom-width: 26px;
             top: 16px;
         }
+
         .mfp-arrow-left:after {
             border-right: 32px solid #FFF;
             margin-left: 33px;
         }
+
         .mfp-arrow-right:after {
             border-left: 32px solid #FFF;
             margin-left: 28px;
         }
+
         .mfp-arrow:after {
             border-top-width: 26px;
             border-bottom-width: 26px;
             top: 16px;
         }
+
         p {
             margin: 0;
         }
+
         .share-list.container.wide {
             max-width: 90%;
         }
+
+        @media screen and (max-width: 780px) {
+            .fix-gallary {
+                height: 95px
+            }
+        }
     </style>
 </head>
+
 <body>
     <section>
         <div class="container share share-list wide">
             <div class="row">
                 <div class="col-12 comment">{{ $comment }}</div>
             </div>
-            @foreach($propertyDetails as $property)
+            @foreach ($propertyDetails as $property)
                 <div class="row">
                     <div class="col-4 comment">
-                        <a href="{{ route('share.property.details', ['code' => $property->code, 'link' => $link]) }}" target="_blank">{{ $property->code }}</a>
+                        <a href="{{ route('share.property.details', ['code' => $property->code, 'link' => $link]) }}"
+                            target="_blank">{{ $property->code }}</a>
                         <br>
-                        @if($showCode === 'yes')
+                        @if ($showCode === 'yes')
                             <span data-code-span="{{ $property->code }}"></span>
                         @endif
                     </div>
-                    <div class="img-overflow popup-gallery col-8 mb-3">
-                        @php
-                            $s3Base = 'https://spms-property.s3.ap-southeast-2.amazonaws.com/';
-                        @endphp
-                        @foreach($property->photos as $photo)
-                            {{-- <a href="{{ asset($photo->image) }}" title="{{ $images->code }}">
-                                <img src="{{ asset($photo->image) }}" alt="">
-                            </a> --}}
-                            <a href="{{ $s3Base . $photo->image }}" title="">
-                                <img src="{{ $s3Base . $photo->image }}" alt="">
-                            </a>
+                    <div class="img-overflow popup-gallery col-8 mb-3 fix-gallary">
+                        @foreach ([0, 1, 2] as $i)
+                            @if (isset($property->photos[$i]))
+                                <a href="{{ env('AWS_URL') . $property->photos[$i]->image }}" title="">
+                                    <img src="{{ env('AWS_URL') . $property->photos[$i]->image }}" alt="">
+                                </a>
+                            @endif
                         @endforeach
                     </div>
                 </div>
             @endforeach
-        <div class="row mt-5">
-            <div class="col-12">
-                <p>“我們會為您精準搜尋最優質的盤源，並能在具有潛力的物業流出市場前推薦給您，歡迎聯絡我們視察物業！” 保誠物業。</p>
-                <p>物業的呎吋、價格或因應提供方之準確性及市場變化而有所不同，一切需以最終確認為準。</p>
+            <div class="row mt-5">
+                <div class="h6 col-12">
+                    <p>“我們會為您精準搜尋最優質的盤源，並能在具有潛力的物業流出市場前推薦給您，歡迎聯絡我們視察物業！” 保誠物業。</p>
+                    <p>物業的呎吋、價格或因應提供方之準確性及市場變化而有所不同，一切需以最終確認為準。</p>
+                </div>
             </div>
         </div>
-    </div>
     </section>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- jQuery and DataTables Scripts -->
@@ -142,6 +165,7 @@
                 return $(this).data('code-span');
             }).get();
 
+            console.log(codes);
             $.ajax({
                 type: "POST",
                 url: "/fetch-property-details",
@@ -157,7 +181,8 @@
                             if (p.other_free_formate) {
                                 try {
                                     let parsed = JSON.parse(p.other_free_formate);
-                                    otherFreeFormatted = Array.isArray(parsed) ? parsed.join(', ') : '';
+                                    otherFreeFormatted = Array.isArray(parsed) ? parsed.join(
+                                        ', ') : '';
                                 } catch (e) {
                                     otherFreeFormatted = p.other_free_formate;
                                 }
@@ -181,4 +206,5 @@
         });
     </script>
 </body>
+
 </html>
