@@ -195,12 +195,12 @@
                                 @if (in_array('show_as_list', $options))
                                     @if (isset($individual_comments[$property->code]))
                                         <h4 class="w-100" style="font-size: 37px; color: red; font-weight: 700;">
-                                            {!! implode('<br>', array_map('trim', explode(',', $individual_comments[$property->code]))) !!}
+                                            {{ $loop->iteration }}. {!! implode('<br>', array_map('trim', explode(',', $individual_comments[$property->code]))) !!}
                                         </h4>
                                     @endif
                                 @else
                                     <h4 class="w-100" style="font-size: 37px; color: red; font-weight: 700;">
-                                        {{ $individual_comments[$property->code] ?? '' }}</h4>
+                                        {{ $loop->iteration }}. {{ $individual_comments[$property->code] ?? '' }}</h4>
                                 @endif
                             @endif
                             @if (count(array_intersect($valuesToCheck, $options)))
