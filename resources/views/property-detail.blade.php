@@ -658,99 +658,105 @@
                     {{-- @php
                         $sharedImages = json_decode(auth()->user()->images_share_list, true) ?? [];
                     @endphp --}}
-
-                    <div class="d-flex justify-content-end">
-                        <div class="col-md-2">
-                            <a class="btn btn-primary text-white" id="check_all"> Select/De-Select All </a>
+                    @if (count($property->photos))
+                        <div class="d-flex justify-content-end">
+                            <div class="col-md-2">
+                                <a class="btn btn-primary text-white" id="check_all"> Select/De-Select All </a>
+                            </div>
+                            <div class="mr-2" id="make_grid" style="display: none;">
+                                <a class="btn btn-info btn-sm" target="_blank"
+                                    href="{{ route('grid', $property->code) }}">Make grid</a>
+                                <a class="btn btn-success btn-sm text-white" id="ai-decor-btn">A.I Interior Decor</a>
+                            </div>
+                            <div id="duplicate_images" style="display: none;">
+                                @if (Auth()->user()->image_merge_permission == 1)
+                                    <button class="btn btn-info btn-sm"
+                                        onclick="duplicateImagesToProperties('{{ $property->building }}', '{{ $property->code }}')">Share
+                                        images with same building</button>
+                                @endif
+                            </div>
+                            <div class="spinner-border text-danger shadow-lg" id="ai_spinner"
+                                style="position: absolute; display:none; z-index: 9999; left: 50%;" role="status"></div>
                         </div>
-                        <div class="mr-2" id="make_grid" style="display: none;">
-                            <a class="btn btn-info btn-sm" target="_blank"
-                                href="{{ route('grid', $property->code) }}">Make grid</a>
-                            <a class="btn btn-success btn-sm text-white" id="ai-decor-btn">A.I Interior Decor</a>
-                        </div>
-                        <div id="duplicate_images" style="display: none;">
-                            @if (Auth()->user()->image_merge_permission == 1)
-                                <button class="btn btn-info btn-sm"
-                                    onclick="duplicateImagesToProperties('{{ $property->building }}', '{{ $property->code }}')">Share
-                                    images with same building</button>
-                            @endif
-                        </div>
-                        <div class="spinner-border text-danger shadow-lg" id="ai_spinner"
-                            style="position: absolute; display:none; z-index: 9999; left: 50%;" role="status"></div>
-                    </div>
 
-                    <div class="popup-gallery">
-                        <div class="row">
-                            @foreach ($property->photos as $photo)
-                                <div class="col-4 mt-3 mb-5">
-                                    @php
-                                        $sharedImages = json_decode(auth()->user()->images_share_list, true) ?? [];
-                                    @endphp
-                                    <input type="checkbox" class="share-input" id="share-photo-input"
-                                        data-share="{{ $photo->id }}"
-                                        {{ in_array($photo->id, $sharedImages) ? 'checked' : '' }}>
-                                    <div class="share-extension"></div>
+                        <div class="popup-gallery">
+                            <div class="row">
+                                @foreach ($property->photos as $photo)
+                                    <div class="col-4 mt-3 mb-5">
+                                        @php
+                                            $sharedImages = json_decode(auth()->user()->images_share_list, true) ?? [];
+                                        @endphp
+                                        <input type="checkbox" class="share-input" id="share-photo-input"
+                                            data-share="{{ $photo->id }}"
+                                            {{ in_array($photo->id, $sharedImages) ? 'checked' : '' }}>
+                                        <div class="share-extension"></div>
 
-                                    <div style="position: absolute; bottom: -35px; left: 15px;">
-                                        <button data-toggle="modal" data-id="{{ $photo->id }}"
-                                            data-yt="{{ $photo->yt_link }}" data-target="#imageEditModel"
-                                            class="p-1 text-succes">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                class="icon icon-tabler icon-tabler-edit">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path>
-                                                <path
-                                                    d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z">
-                                                </path>
-                                                <path d="M16 5l3 3"></path>
-                                            </svg>
-                                        </button>
-                                        @if ($photo->yt_link != null)
-                                            <button onclick="setLink('{{ $photo->yt_link }}')" data-toggle="modal"
-                                                data-target="#imageDetailModel" class="p-1 text-danger">
+                                        <div style="position: absolute; bottom: -35px; left: 15px;">
+                                            <button data-toggle="modal" data-id="{{ $photo->id }}"
+                                                data-yt="{{ $photo->yt_link }}" data-target="#imageEditModel"
+                                                class="p-1 text-succes">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
-                                                    viewBox="0 0 24 24" fill="currentColor"
-                                                    class="icon icon-tabler icons-tabler-filled icon-tabler-brand-youtube">
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="icon icon-tabler icon-tabler-edit">
                                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                    <path
-                                                        d="M18 3a5 5 0 0 1 5 5v8a5 5 0 0 1 -5 5h-12a5 5 0 0 1 -5 -5v-8a5 5 0 0 1 5 -5zm-9 6v6a1 1 0 0 0 1.514 .857l5 -3a1 1 0 0 0 0 -1.714l-5 -3a1 1 0 0 0 -1.514 .857z">
+                                                    <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1">
                                                     </path>
+                                                    <path
+                                                        d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z">
+                                                    </path>
+                                                    <path d="M16 5l3 3"></path>
                                                 </svg>
+                                            </button>
+                                            @if ($photo->yt_link != null)
+                                                <button onclick="setLink('{{ $photo->yt_link }}')" data-toggle="modal"
+                                                    data-target="#imageDetailModel" class="p-1 text-danger">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                                        viewBox="0 0 24 24" fill="currentColor"
+                                                        class="icon icon-tabler icons-tabler-filled icon-tabler-brand-youtube">
+                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                        <path
+                                                            d="M18 3a5 5 0 0 1 5 5v8a5 5 0 0 1 -5 5h-12a5 5 0 0 1 -5 -5v-8a5 5 0 0 1 5 -5zm-9 6v6a1 1 0 0 0 1.514 .857l5 -3a1 1 0 0 0 0 -1.714l-5 -3a1 1 0 0 0 -1.514 .857z">
+                                                        </path>
+                                                    </svg>
+                                                </button>
+                                            @endif
+                                        </div>
+
+                                        <div class="room-num">
+                                            <input type="input" data-field="room_number"
+                                                data-photo-id="{{ $photo->id }}" value="{{ $photo->room_number }}"
+                                                placeholder="Room number">
+                                            <input type="input" data-field="size" data-photo-id="{{ $photo->id }}"
+                                                value="{{ $photo->size }}" placeholder="Size">
+                                            <input type="input" data-field="price"
+                                                data-photo-id="{{ $photo->id }}" value="{{ $photo->price }}"
+                                                placeholder="Price">
+                                        </div>
+                                        @php
+                                            $s3Base = 'https://spms-property.s3.ap-southeast-2.amazonaws.com/';
+                                        @endphp
+
+                                        <a href="{{ $s3Base . $photo->image }}" title="{{ $photo->code }}">
+                                            <img class="img-fluid fix-img shadow" src="{{ $s3Base . $photo->image }}"
+                                                alt="{{ $property->code }}" width="100%"
+                                                title="{{ $property->code }}">
+                                        </a>
+                                        @if ($photo->photoAi)
+                                            <button class="btn flip-btn btn-primary"
+                                                data-image="{{ env('AWS_URL') . $photo->photoAi->img_name }}"
+                                                data-original="{{ $s3Base . $photo->image }}" data-toggle="modal"
+                                                data-target="#flipModal">
+                                                A.I Flip
                                             </button>
                                         @endif
                                     </div>
-
-                                    <div class="room-num">
-                                        <input type="input" data-field="room_number"
-                                            data-photo-id="{{ $photo->id }}" value="{{ $photo->room_number }}"
-                                            placeholder="Room number">
-                                        <input type="input" data-field="size" data-photo-id="{{ $photo->id }}"
-                                            value="{{ $photo->size }}" placeholder="Size">
-                                        <input type="input" data-field="price" data-photo-id="{{ $photo->id }}"
-                                            value="{{ $photo->price }}" placeholder="Price">
-                                    </div>
-                                    @php
-                                        $s3Base = 'https://spms-property.s3.ap-southeast-2.amazonaws.com/';
-                                    @endphp
-
-                                    <a href="{{ $s3Base . $photo->image }}" title="{{ $photo->code }}">
-                                        <img class="img-fluid fix-img shadow" src="{{ $s3Base . $photo->image }}"
-                                            alt="{{ $property->code }}" width="100%" title="{{ $property->code }}">
-                                    </a>
-                                    @if ($photo->photoAi)
-                                        <button class="btn flip-btn btn-primary"
-                                            data-image="{{ env('AWS_URL') . $photo->photoAi->img_name }}"
-                                            data-original="{{ $s3Base . $photo->image }}" data-toggle="modal"
-                                            data-target="#flipModal">
-                                            A.I Flip
-                                        </button>
-                                    @endif
-                                </div>
-                            @endforeach
+                                @endforeach
+                            </div>
                         </div>
-                    </div>
+                    @else
+                        There are no photos for this property.
+                    @endif
                 </div>
                 <!-- </form> -->
             </div>
