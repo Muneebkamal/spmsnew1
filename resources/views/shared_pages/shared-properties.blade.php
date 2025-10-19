@@ -163,12 +163,12 @@
                                 }
                             }
                             span.innerHTML = `
-                                <p>Gross SF: ${p.gross_sf || ''}</p>
-                                ${p.selling_price !== '0.00' ? `<p class="d-none">Selling Price: ${p.selling_price || ''}</p>` : ''}
-                                ${p.selling_g !== '0.00' ? `<p class="d-none">G@: ${p.selling_g || ''}</p>` : ''}
-                                <p>Rental Price: ${p.rental_price || ''}</p>
-                                <p>G@: ${p.rental_g || ''}</p>
-                                <p>Oths: ${p.oths || ''}</p>
+                                <p>Gross SF: ${p.gross_sf || 'null'}</p>
+                                ${p.selling_price !== '0.00' ? `<p>Selling Price: ${p.selling_price || 'null'}</p>` : ''}
+                                ${p.selling_g !== '0.00' ? `<p>G@: ${p.selling_g || 'null'}</p>` : ''}
+                                <p>Rental Price: ${p.rental_price || 'null'}</p>
+                                <p>G@: ${p.rental_g || 'null'}</p>
+                                <p>Oths: ${p.oths || 'null'}</p>
                                 ${otherFreeFormatted ? `<p>Others: <span style="color: white; background-color: blue; padding: 2px">${otherFreeFormatted}</span></p>` : ''}
                             `;
                         }
